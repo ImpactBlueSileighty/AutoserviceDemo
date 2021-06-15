@@ -1,0 +1,135 @@
+﻿<Page x:Class="AutoserviceDemo.View.Pages.ServiceListPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AutoserviceDemo.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ServiceListPage">
+
+    <Grid Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+            
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <WrapPanel HorizontalAlignment="Center"
+                       VerticalAlignment="Center">
+                <TextBlock Text="Фильтр:" FontSize="16" Margin="0 0 5 0" VerticalAlignment="Center"/>
+                <ComboBox Width="150" 
+                          Height="30" 
+                          FontSize="16" 
+                          VerticalContentAlignment="Center"
+                          ItemsSource="{Binding Discounts}"
+                          SelectedItem="{Binding SelectedDiscount}"/>
+
+                <TextBlock Text="Поиск:" FontSize="16" VerticalAlignment="Center" Margin="50 0 5 0"/>
+                <TextBox Width="150" 
+                         Height="30" 
+                         FontSize="16" 
+                         VerticalContentAlignment="Center"
+                         Text="{Binding InputTitle, UpdateSourceTrigger=PropertyChanged}"/>
+
+            </WrapPanel>
+
+
+        </Grid>
+
+        <ListView Grid.Row="1"
+                  ItemsSource="{Binding Services}"
+                  SelectedItem="{Binding SelectedService}"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <!-- !!!! -->
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Style.Triggers>
+                        <Trigger Property="IsKeyboardFocusWithin" Value="true">
+                            <Setter Property="IsSelected" Value="True" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Background="AliceBlue" Width="500">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="10"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="130"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="1"
+                                Grid.Row="1"
+                                BorderBrush="Black"
+                                BorderThickness="1">
+                            <Image Source="/Resources/Images/service_logo.ico" />
+
+                        </Border>
+
+                        <Grid Grid.Row="1"
+                              Grid.Column="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="{Binding Title}" 
+                                       FontSize="16"
+                                       VerticalAlignment="Center"/>     
+
+                            <WrapPanel Grid.Row="1" VerticalAlignment="Center">
+                                <TextBlock Text="{Binding CostStrikethrough}" 
+                                           TextDecorations="Strikethrough"
+                                           FontSize="16"/>  
+                                <TextBlock Text="{Binding CostFormat}"
+                                           FontSize="16"/>
+                                <TextBlock Text=" за "
+                           FontSize="16"/>
+                                <TextBlock Text="{Binding DateFormat}"
+                           FontSize="16"/>
+                            </WrapPanel>
+
+                            <TextBlock Grid.Row="2"
+                                       Text="{Binding DiscountFormat}"/>
+
+                            <WrapPanel Grid.Row="4"
+                                       VerticalAlignment="Center">
+                                <Button x:Name="EditBtn"
+                                        Content="Редактировать"
+                                        Cursor="Hand"
+                                        Click="EditBtn_Click"
+                                        Height="25"
+                                        Width="150"/>
+                                
+                                <Button x:Name="DeleteBtn"
+                                        Content="Удалить"
+                                        Cursor="Hand"
+                                        Margin="10 0 0 0"
+                                        Click="DeleteBtn_Click"
+                                        Width="100"/>   
+                            </WrapPanel>
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+        
+    </Grid>
+</Page>

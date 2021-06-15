@@ -1,0 +1,63 @@
+﻿<Window x:Class="AutoserviceDemo.View.ServiceList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AutoserviceDemo.View"
+        mc:Ignorable="d"
+        Title="ServiceList" 
+        Height="900" 
+        Width="1300"
+        MinHeight="800"
+        MinWidth="1200"
+        WindowStartupLocation="CenterScreen"
+        Icon="/AutoserviceDemo;component/Resources/Images/service_logo.ico">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            
+            
+            <Button x:Name="ServiceListBtn"
+                    FontSize="20"
+                    Background="White"
+                    Click="ServiceListBtn_Click">
+                <Button.Content>
+                    <StackPanel>
+                        <TextBlock Text="Список"/>
+                        <TextBlock Text="услуг" 
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+
+            <Button x:Name="OrderListBtn"
+                    Grid.Row="1"
+                    FontSize="20"
+                    Background="White"
+                    Click="OrderListBtn_Click">
+                <Button.Content>
+                    <StackPanel>
+                        <TextBlock Text="Список"/>
+                        <TextBlock Text="заказов" 
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+
+        </Grid>
+        <Frame x:Name="NavigationFrame"
+               Grid.Column="1"
+               Source="pack://application:,,,/View/Pages/ServiceListPage.xaml"
+               NavigationUIVisibility="Hidden"/>
+    </Grid>
+</Window>
