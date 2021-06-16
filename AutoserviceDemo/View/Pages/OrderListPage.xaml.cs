@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoserviceDemo.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,8 +21,11 @@ namespace AutoserviceDemo.View.Pages
     /// </summary>
     public partial class OrderListPage : Page
     {
+        OrderListViewModel VM;
         public OrderListPage()
         {
+            VM = new OrderListViewModel();
+            DataContext = VM;
             InitializeComponent();
         }
     }

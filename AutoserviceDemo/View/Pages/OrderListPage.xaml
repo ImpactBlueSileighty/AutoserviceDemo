@@ -9,6 +9,22 @@
       Title="OrderList">
 
     <Grid Background="BlanchedAlmond">
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+
+        <ListView ItemsSource="{Binding Services}"
+                  SelectedItem="{Binding SelectedService}"
+                  Grid.Row="1">
+            <ListView.View>
+                <GridView>
+                    
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding ID}" />
+                    <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}"/>
+                    <GridViewColumn Header="Cost" DisplayMemberBinding="{Binding Cost}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Page>

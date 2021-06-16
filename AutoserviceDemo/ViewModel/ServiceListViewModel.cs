@@ -37,6 +37,18 @@ namespace AutoserviceDemo.ViewModel
             }
         }
 
+        public List<string> ItemsOnPage { get; set; }
+        private string _selectedItem;
+        public string SelectedItem 
+        {
+            get => _selectedItem;
+            set
+            {
+                _selectedItem = value;
+                Filter();
+            }
+        }
+
         //от 0 до 5%, от 5% до 15%, от 15% до 30%, от 30% до 70%, от 70% до 100%
         public ServiceListViewModel()
         {
@@ -45,7 +57,14 @@ namespace AutoserviceDemo.ViewModel
             Discounts.Add("Все");
             Discounts.AddRange(discounts);
             SelectedDiscount = Discounts[0];
-            
+
+
+            string[] items = { "15", "30", "50" };
+            ItemsOnPage = new List<string>();
+            ItemsOnPage.Add("Все");
+            ItemsOnPage.AddRange(items);
+            SelectedItem = ItemsOnPage[0];
+
 
             Filter();
         }
@@ -71,6 +90,17 @@ namespace AutoserviceDemo.ViewModel
 
             if (!String.IsNullOrWhiteSpace(InputTitle))
                 Services = context.Service.Where(e => e.Title.Contains(InputTitle)).ToList();
+            
+            
+
+            if (SelectedItem == "15")
+                Services = context.Service.OrderBy(e => e.ID).Take(15).ToList();
+
+            if (SelectedItem == "30")
+                Services = context.Service.OrderBy(e => e.ID).Take(30).ToList();
+
+            if (SelectedItem == "50")
+                Services = context.Service.OrderBy(e => e.ID).Take(50).ToList();
 
             OnPropertyChanged(nameof(Services));
         }

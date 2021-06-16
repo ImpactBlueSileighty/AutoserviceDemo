@@ -33,6 +33,11 @@
                          VerticalContentAlignment="Center"
                          Text="{Binding InputTitle, UpdateSourceTrigger=PropertyChanged}"/>
 
+                <ComboBox ItemsSource="{Binding ItemsOnPage}"
+                          SelectedItem="{Binding SelectedItem}"
+                          Margin="50 0 0 0"
+                          Width="100"
+                          FontSize="16"/>
             </WrapPanel>
 
 
